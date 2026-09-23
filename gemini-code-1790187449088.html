@@ -1,0 +1,2236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REPORTE CASA KIWI HOSTAL 14 - 20 DE SEPTIEMBRE</title>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --kiwi-black: #1A1A1A;
+      --kiwi-dark: #242424;
+      --kiwi-orange: #E64A19;
+      --kiwi-orange-bright: #FF5722;
+      --kiwi-orange-light: #FBE9E7;
+      --kiwi-yellow: #FBC02D;
+      --kiwi-yellow-bright: #FFEB3B;
+      --kiwi-yellow-light: #FFFDE7;
+      --kiwi-gray-dark: #424242;
+      --kiwi-gray-medium: #757575;
+      --kiwi-gray-light: #F8F9FA;
+      --kiwi-card-border: #EAEAEA;
+      
+      --alert-red: #D32F2F;
+      --alert-red-light: #FFEBEE;
+      --alert-green: #2E7D32;
+      --alert-green-light: #E8F5E9;
+      --alert-blue: #1565C0;
+      --alert-blue-light: #E3F2FD;
+
+      --shadow-sm: 0 2px 6px rgba(0,0,0,0.04);
+      --shadow-md: 0 6px 18px rgba(0,0,0,0.06);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #FFFFFF;
+      color: var(--kiwi-dark);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(8px);
+      border-bottom: 3px solid var(--kiwi-orange);
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      font-size: 15px;
+      color: var(--kiwi-black);
+      letter-spacing: 0.5px;
+    }
+    .nav-brand svg {
+      height: 36px;
+      width: auto;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 6px;
+      overflow-x: auto;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--kiwi-gray-dark);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .nav-links a:hover {
+      color: var(--kiwi-orange);
+      background: var(--kiwi-orange-light);
+    }
+    .btn-print {
+      background: var(--kiwi-black);
+      color: #FFFFFF;
+      border: 1px solid var(--kiwi-black);
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 800;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn-print:hover {
+      background: var(--kiwi-orange);
+      border-color: var(--kiwi-orange);
+    }
+
+    .dashboard-container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 24px 20px 80px 20px;
+    }
+
+    .header-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 32px 36px;
+      margin-bottom: 24px;
+      border: 1px solid var(--kiwi-card-border);
+      box-shadow: var(--shadow-md);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .header-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--kiwi-black) 0%, var(--kiwi-orange) 50%, var(--kiwi-yellow) 100%);
+    }
+    .header-logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 115px;
+      height: 115px;
+      background: #FFFFFF;
+      border-radius: var(--radius-md);
+      padding: 6px;
+      border: 1px solid var(--kiwi-card-border);
+      box-shadow: var(--shadow-sm);
+    }
+    .header-info h1 {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--kiwi-black);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+    .header-dates {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--kiwi-orange);
+      background: var(--kiwi-orange-light);
+      padding: 4px 12px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .header-subtitle {
+      font-size: 13.5px;
+      color: var(--kiwi-gray-medium);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .header-executive-phrase {
+      font-size: 12.5px;
+      color: var(--kiwi-dark);
+      background: #FFFDF9;
+      border-left: 4px solid var(--kiwi-orange);
+      padding: 10px 14px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      border-top: 1px solid #FFF3E0;
+      border-right: 1px solid #FFF3E0;
+      border-bottom: 1px solid #FFF3E0;
+      line-height: 1.5;
+    }
+    .header-meta {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .meta-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--kiwi-gray-dark);
+    }
+    .meta-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--alert-green);
+    }
+
+    .notice-card {
+      background: #FFFDF9;
+      border: 1px solid #FFE0B2;
+      border-left: 5px solid var(--kiwi-orange);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .notice-card h3 {
+      font-size: 13.5px;
+      font-weight: 900;
+      color: var(--kiwi-black);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .notice-card p {
+      font-size: 12px;
+      color: var(--kiwi-gray-dark);
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+    .notice-card ul {
+      margin-left: 18px;
+      font-size: 11.5px;
+      color: var(--kiwi-dark);
+      line-height: 1.45;
+    }
+
+    .section-title-wrap {
+      margin: 36px 0 16px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--kiwi-card-border);
+      padding-bottom: 8px;
+    }
+    .section-title {
+      font-size: 18.5px;
+      font-weight: 900;
+      color: var(--kiwi-black);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      background: var(--kiwi-orange);
+      color: #FFFFFF;
+      border-radius: 50%;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .section-tag {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--kiwi-gray-medium);
+      background: var(--kiwi-gray-light);
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--kiwi-card-border);
+    }
+
+    .card {
+      background: #FFFFFF;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--kiwi-card-border);
+      box-shadow: var(--shadow-sm);
+      padding: 22px;
+      margin-bottom: 20px;
+      transition: box-shadow 0.2s ease;
+    }
+    .card:hover {
+      box-shadow: var(--shadow-md);
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--kiwi-black);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .kpi-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--kiwi-card-border);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .kpi-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 5px;
+      background: var(--kiwi-card-border);
+    }
+    .kpi-card.orange::before { background: var(--kiwi-orange); }
+    .kpi-card.yellow::before { background: var(--kiwi-yellow); }
+    .kpi-card.black::before { background: var(--kiwi-black); }
+    .kpi-card.green::before { background: var(--alert-green); }
+    .kpi-card.red::before { background: var(--alert-red); }
+
+    .kpi-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .kpi-name {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--kiwi-gray-medium);
+      letter-spacing: 0.4px;
+    }
+    .kpi-icon { font-size: 16px; }
+    .kpi-value {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--kiwi-black);
+      margin-bottom: 4px;
+      letter-spacing: -0.5px;
+    }
+    .kpi-subtext {
+      font-size: 11px;
+      color: var(--kiwi-gray-dark);
+      line-height: 1.35;
+    }
+    .kpi-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-top: 6px;
+      align-self: flex-start;
+    }
+    .kpi-badge.positive { background: var(--alert-green-light); color: var(--alert-green); }
+    .kpi-badge.warning { background: var(--kiwi-yellow-light); color: #8D6E63; }
+    .kpi-badge.alert { background: var(--alert-red-light); color: var(--alert-red); }
+    .kpi-badge.neutral { background: var(--kiwi-gray-light); color: var(--kiwi-gray-dark); }
+
+    .table-responsive {
+      overflow-x: auto;
+      margin: 12px 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--kiwi-card-border);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 12px;
+    }
+    thead {
+      background: #FAFAFA;
+      border-bottom: 2px solid var(--kiwi-card-border);
+    }
+    th {
+      padding: 9px 12px;
+      font-weight: 800;
+      color: var(--kiwi-black);
+      text-transform: uppercase;
+      font-size: 10.5px;
+      letter-spacing: 0.3px;
+    }
+    td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #F0F0F0;
+      color: var(--kiwi-dark);
+    }
+    tbody tr:hover { background: #FFFDF9; }
+    tfoot {
+      background: #F8F9FA;
+      font-weight: 800;
+      border-top: 2px solid var(--kiwi-card-border);
+    }
+    tfoot td {
+      padding: 10px 12px;
+      color: var(--kiwi-black);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 6px;
+      border-radius: 12px;
+      font-size: 10.5px;
+      font-weight: 800;
+    }
+    .badge-success { background: var(--alert-green-light); color: var(--alert-green); }
+    .badge-warning { background: var(--kiwi-yellow-light); color: #B78103; }
+    .badge-danger { background: var(--alert-red-light); color: var(--alert-red); }
+    .badge-info { background: var(--alert-blue-light); color: var(--alert-blue); }
+
+    .insight-box {
+      background: #FFFFFF;
+      border: 1px solid var(--kiwi-card-border);
+      border-left: 4px solid var(--kiwi-orange);
+      padding: 14px 18px;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: 14px 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .insight-box.yellow { border-left-color: var(--kiwi-yellow); background: #FFFDF5; }
+    .insight-box.green { border-left-color: var(--alert-green); background: #F9FCF9; }
+    .insight-box.black { border-left-color: var(--kiwi-black); background: #FAFAFA; }
+    .insight-box h4 {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--kiwi-black);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .insight-box p {
+      font-size: 12px;
+      color: var(--kiwi-gray-dark);
+      margin-bottom: 3px;
+      line-height: 1.45;
+    }
+
+    .traffic-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .traffic-col {
+      background: #FFFFFF;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--kiwi-card-border);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    .traffic-col.green { border-top: 5px solid var(--alert-green); }
+    .traffic-col.yellow { border-top: 5px solid var(--kiwi-yellow); }
+    .traffic-col.red { border-top: 5px solid var(--alert-red); }
+    .traffic-col.orange { border-top: 5px solid var(--kiwi-orange); }
+
+    .traffic-head {
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .traffic-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .traffic-item {
+      font-size: 11px;
+      color: var(--kiwi-gray-dark);
+      line-height: 1.4;
+      padding-left: 10px;
+      position: relative;
+    }
+    .traffic-item::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+    .traffic-col.green .traffic-item::before { color: var(--alert-green); }
+    .traffic-col.yellow .traffic-item::before { color: var(--kiwi-yellow); }
+    .traffic-col.red .traffic-item::before { color: var(--alert-red); }
+    .traffic-col.orange .traffic-item::before { color: var(--kiwi-orange); }
+
+    @media (max-width: 992px) {
+      .grid-2, .grid-3, .grid-4, .traffic-grid { grid-template-columns: 1fr; }
+      .header-card { grid-template-columns: 1fr; text-align: center; }
+      .header-logo-wrap { margin: 0 auto; }
+      .header-meta { text-align: center; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra Superior -->
+  <nav class="top-nav">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <svg viewBox="0 0 100 100">
+          <rect x="15" y="15" width="70" height="70" rx="14" transform="rotate(45 50 50)" fill="#E64A19"/>
+          <rect x="25" y="25" width="50" height="50" rx="8" transform="rotate(45 50 50)" fill="#FFEB3B"/>
+          <path d="M54 44 C50 40 44 41 40 46 C37 49 37 55 41 59 C44 62 49 61 52 57 C55 54 56 50 58 48 C62 48 66 52 69 56 C68 53 66 49 61 46 C59 45 56 45 54 44 Z" fill="#1A1A1A"/>
+        </svg>
+        <span>CASA KIWI HOSTEL</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#kpis">01. KPIs</a></li>
+        <li><a href="#ocupacion">02. Ocupación</a></li>
+        <li><a href="#trafico">03. Flujo In/Out</a></li>
+        <li><a href="#ventas">04. Ventas PMS</a></li>
+        <li><a href="#checkouts">05. Check-outs</a></li>
+        <li><a href="#checkins">06. Check-ins</a></li>
+        <li><a href="#reservas">07. Reservas Creadas</a></li>
+        <li><a href="#upselling">08. Upselling</a></li>
+        <li><a href="#tienda-recepcion">09. Retail Recepción</a></li>
+        <li><a href="#comparativas">10. Comparativas</a></li>
+        <li><a href="#demografia">11. Demografía (Sem/Mes/Año)</a></li>
+        <li><a href="#revenue">12. Estrategia</a></li>
+      </ul>
+      <button class="btn-print" onclick="window.print()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+        Imprimir / PDF
+      </button>
+    </div>
+  </nav>
+
+  <div class="dashboard-container">
+
+    <!-- ENCABEZADO -->
+    <header class="header-card">
+      <div class="header-logo-wrap">
+        <svg width="90" height="90" viewBox="0 0 100 100">
+          <rect x="15" y="15" width="70" height="70" rx="14" transform="rotate(45 50 50)" fill="#E64A19"/>
+          <rect x="25" y="25" width="50" height="50" rx="8" transform="rotate(45 50 50)" fill="#FFEB3B"/>
+          <path d="M54 44 C50 40 44 41 40 46 C37 49 37 55 41 59 C44 62 49 61 52 57 C55 54 56 50 58 48 C62 48 66 52 69 56 C68 53 66 49 61 46 C59 45 56 45 54 44 Z" fill="#1A1A1A"/>
+        </svg>
+      </div>
+      <div class="header-info">
+        <span class="header-dates">Semana del 14 al 20 de Septiembre de 2026</span>
+        <h1>REPORTE CASA KIWI HOSTAL 14 - 20 DE SEPTIEMBRE</h1>
+        <div class="header-subtitle">Auditoría Integral de Operaciones, Ventas PMS, Flujo de Huéspedes, Origen Geográfico & Revenue</div>
+        <p class="header-executive-phrase">
+          “La semana cerró con <strong>36,86% de ocupación</strong> (pico de 60% el sábado). Las ventas totales del PMS sumaron <strong>$15.518.783 COP</strong> con el Bar aportando un extraordinario <strong>39,4% de todo su mes ($2,71M)</strong>. En lo demográfico, más del <strong>84% al 94% de los huéspedes proviene del extranjero</strong> (Europa liderando con más del 50%), mientras que en el acumulado del año 2026 Francia lidera con 15,8% y en septiembre Alemania toma el primer lugar (14,6% - 17,0%) junto a un fuerte repunte de Colombia (13,5%).”
+        </p>
+      </div>
+      <div class="header-meta">
+        <div class="meta-badge"><span class="meta-dot"></span> Reporte Oficial Consolidado</div>
+        <div class="meta-badge" style="color: var(--kiwi-orange);">Medellín, Antioquia</div>
+        <div class="meta-badge" style="font-size: 11px; color: var(--kiwi-gray-medium);">PMS Lobby / Comisiones Normalizadas</div>
+        <div class="meta-badge" style="font-size: 11px; color: var(--kiwi-gray-medium);">Corte: 21-Sep-2026</div>
+      </div>
+    </header>
+
+    <!-- NOTA METODOLÓGICA ACLARATORIA -->
+    <div class="notice-card">
+      <h3>📌 Alcance Metodológico: Delimitación de Datos Analizados</h3>
+      <p>
+        Para garantizar la precisión de este reporte y evitar cualquier distorsión entre la demanda comercial y la operación física, se deja expresamente claro el alcance de las cifras presentadas:
+      </p>
+      <ul>
+        <li><strong>Reservas Creadas (Captación Comercial):</strong> Corresponden estrictamente a las <strong>52 reservas nuevas generadas entre el 14 y el 20 de septiembre</strong> (69 huéspedes asociados y $9,77M COP en venta bruta en libros), independientemente de si la estancia era inmediata o para fechas futuras.</li>
+        <li><strong>Check-ins Realizados (Operación y Ocupación Real):</strong> Corresponden a los <strong>53 ingresos efectivos ocurridos entre el 14 y el 20 de septiembre</strong> (82 huéspedes y 125 noches consumidas en el hostal con $10,69M COP brutos de alojamiento), sin importar en qué fecha previa se haya creado originalmente la reserva en el sistema.</li>
+      </ul>
+    </div>
+
+    <!-- BLOQUE 1: KPIS GLOBALES -->
+    <section id="kpis">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">01</span> Indicadores Globales de Rendimiento (KPIs)</div>
+        <span class="section-tag">Semana 14–20 Septiembre</span>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card orange">
+          <div class="kpi-header">
+            <span class="kpi-name">Ventas Totales PMS</span>
+            <span class="kpi-icon">🧾</span>
+          </div>
+          <div class="kpi-value">$15.518.783</div>
+          <div class="kpi-subtext">30,6% del mes acumulado ($50,68M)</div>
+          <span class="kpi-badge neutral">Promedio: $2.216.969/día</span>
+        </div>
+
+        <div class="kpi-card green">
+          <div class="kpi-header">
+            <span class="kpi-name">Ingresos Recibidos</span>
+            <span class="kpi-icon">💵</span>
+          </div>
+          <div class="kpi-value">$9.645.010</div>
+          <div class="kpi-subtext">Recaudación en caja (23,0% del mes)</div>
+          <span class="kpi-badge positive">71,3% Tarjeta de Crédito</span>
+        </div>
+
+        <div class="kpi-card green">
+          <div class="kpi-header">
+            <span class="kpi-name">Ventas Bar Semana</span>
+            <span class="kpi-icon">🍹</span>
+          </div>
+          <div class="kpi-value">$2.710.000</div>
+          <div class="kpi-subtext">39,4% de las ventas de Bar del mes ($6,88M)</div>
+          <span class="kpi-badge positive">17,5% de la venta total</span>
+        </div>
+
+        <div class="kpi-card orange">
+          <div class="kpi-header">
+            <span class="kpi-name">Ocupación Semanal</span>
+            <span class="kpi-icon">📊</span>
+          </div>
+          <div class="kpi-value">36,86%</div>
+          <div class="kpi-subtext">129 unidades vendidas de 350 disponibles</div>
+          <span class="kpi-badge neutral">Pico Sábado: 60% (30 uds)</span>
+        </div>
+
+        <div class="kpi-card black">
+          <div class="kpi-header">
+            <span class="kpi-name">Líder Anual vs Mes</span>
+            <span class="kpi-icon">🌍</span>
+          </div>
+          <div class="kpi-value">Francia / Alemania</div>
+          <div class="kpi-subtext">Francia 15,8% en el año · Alemania 14,6% en Sep</div>
+          <span class="kpi-badge positive">Colombia sube a 13,5% en Sep</span>
+        </div>
+
+        <div class="kpi-card yellow">
+          <div class="kpi-header">
+            <span class="kpi-name">Impacto Upselling</span>
+            <span class="kpi-icon">🎯</span>
+          </div>
+          <div class="kpi-value">$658.950</div>
+          <div class="kpi-subtext">2 upgrades + 3 reservas directas logradas</div>
+          <span class="kpi-badge positive">Conversión comercial: 33,3%</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUE 2: OCUPACIÓN FÍSICA -->
+    <section id="ocupacion">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">02</span> Ocupación Física Diaria</div>
+        <span class="section-tag">Capacidad: 50 Unidades/Día (350 Noches)</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Ocupación Diaria % vs Promedio Semanal (36,86%)</span>
+            <span class="badge badge-info">Sábado Récord al 60%</span>
+          </div>
+          <div style="height: 270px;">
+            <canvas id="chartSemana"></canvas>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Matriz Diaria de Capacidad y Ocupación</span>
+            <span class="badge badge-neutral">129 Vendidas / 221 Sin Vender</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Día</th>
+                  <th>Disponible</th>
+                  <th>Vendidas</th>
+                  <th>Sin Vender</th>
+                  <th>Ocupación %</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>14 sep.</td><td>Lunes</td><td>50</td><td>16</td><td>34</td><td><span class="badge badge-warning">32%</span></td></tr>
+                <tr><td>15 sep.</td><td>Martes</td><td>50</td><td>15</td><td>35</td><td><span class="badge badge-danger">30%</span></td></tr>
+                <tr><td>16 sep.</td><td>Miércoles</td><td>50</td><td>15</td><td>35</td><td><span class="badge badge-danger">30%</span></td></tr>
+                <tr><td>17 sep.</td><td>Jueves</td><td>50</td><td>16</td><td>34</td><td><span class="badge badge-warning">32%</span></td></tr>
+                <tr><td>18 sep.</td><td>Viernes</td><td>50</td><td>15</td><td>35</td><td><span class="badge badge-danger">30%</span></td></tr>
+                <tr style="background: #FFF9C4;"><td><strong>19 sep.</strong></td><td><strong>Sábado</strong></td><td>50</td><td><strong>30</strong></td><td>20</td><td><span class="badge badge-success">60% 🔥</span></td></tr>
+                <tr><td>20 sep.</td><td>Domingo</td><td>50</td><td>22</td><td>28</td><td><span class="badge badge-warning">44%</span></td></tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="2">TOTAL / PROMEDIO</td>
+                  <td>350</td>
+                  <td>129</td>
+                  <td>221</td>
+                  <td>36,86%</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <div style="font-size: 11px; color: var(--kiwi-gray-dark); margin-top: 4px;">
+            • Entre semana (lunes-jueves) la ocupación promedió apenas 31%, mientras el fin de semana promedió 44,67% (casi 14 pp de diferencia).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUE 3: TRÁFICO OPERATIVO EN RECEPCIÓN (CRUCE IN/OUT) -->
+    <section id="trafico">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">03</span> Dinámica de Recepción: Cruce de Check-ins vs Check-outs</div>
+        <span class="section-tag">Explicación Matemática de la Ocupación</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Flujo Neto Diario de Reservas (Entradas vs Salidas)</span>
+            <span class="badge badge-success">Sábado: +15 Reservas Netas</span>
+          </div>
+          <div style="height: 270px;">
+            <canvas id="chartFlujoNeto"></canvas>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Balance Diario de Huéspedes y Reservas</span>
+            <span class="badge badge-neutral">53 Entradas vs 54 Salidas</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Día</th>
+                  <th>Check-ins</th>
+                  <th>Check-outs</th>
+                  <th>Flujo Neto</th>
+                  <th>Ocupación %</th>
+                  <th>Impacto Operativo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Lun 14</td><td>0</td><td>7</td><td><span class="badge badge-danger">-7</span></td><td>32%</td><td>Salidas acumuladas sin llegadas</td></tr>
+                <tr><td>Mar 15</td><td>10</td><td>11</td><td><span class="badge badge-neutral">-1</span></td><td>30%</td><td>Día de alta rotación (21 trámites)</td></tr>
+                <tr><td>Mié 16</td><td>4</td><td>4</td><td><span class="badge badge-info">0</span></td><td>30%</td><td>Valle operativo en recepción</td></tr>
+                <tr><td>Jue 17</td><td>6</td><td>5</td><td><span class="badge badge-success">+1</span></td><td>32%</td><td>Estabilidad entre semana</td></tr>
+                <tr><td>Vie 18</td><td>9</td><td>10</td><td><span class="badge badge-neutral">-1</span></td><td>30%</td><td>Pico de recambio en privadas</td></tr>
+                <tr style="background: #E8F5E9;"><td><strong>Sáb 19</strong></td><td><strong>19</strong></td><td><strong>4</strong></td><td><span class="badge badge-success">+15 🔥</span></td><td><strong>60%</strong></td><td><strong>Pico de ocupación semanal</strong></td></tr>
+                <tr style="background: #FFEBEE;"><td>Dom 20</td><td>5</td><td>13</td><td><span class="badge badge-danger">-8</span></td><td>44%</td><td>Salida masiva de fin de semana</td></tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>TOTAL</td>
+                  <td>53</td>
+                  <td>54</td>
+                  <td>-1</td>
+                  <td>36,86%</td>
+                  <td>Rotación de 170 personas (82 in / 88 out)</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUE 4: VENTAS, INGRESOS Y FORMAS DE PAGO -->
+    <section id="ventas">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">04</span> Reporte de Ventas PMS, Ingresos y Medios de Pago</div>
+        <span class="section-tag">Semana 14–20 vs Mes 1–21 Sep</span>
+      </div>
+
+      <div class="card" style="background: #FFFDF9; border-left: 4px solid var(--kiwi-orange);">
+        <p style="font-size: 12px; color: var(--kiwi-dark); margin: 0;">
+          📌 <strong>Precisión de Tesorería:</strong> Se separan estrictamente <strong>Ventas Totales ($15.518.783 COP)</strong> —producción bruta registrada en el PMS—, de los <strong>Ingresos Recibidos ($9.645.010 COP)</strong> —cobros efectivos en caja durante los 7 días— y los <strong>Anticipos ($5.228.560 COP)</strong>.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Composición de Ventas por Categoría (14–20 Sep)</span>
+            <span class="badge badge-success">Privadas + Bar = 78,3%</span>
+          </div>
+          <div style="height: 260px;">
+            <canvas id="chartVentasCat"></canvas>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Formas de Pago: Ingresos Recibidos ($9,65M)</span>
+            <span class="badge badge-info">71,3% Tarjeta de Crédito</span>
+          </div>
+          <div style="height: 260px;">
+            <canvas id="chartMediosPago"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Ventas Totales: Semana 14–20 vs. Mes 1–21</span>
+            <span class="badge badge-neutral">Semana aportó 30,6% del mes</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Categoría</th>
+                  <th>Ventas 14–20</th>
+                  <th>% Sem</th>
+                  <th>Ventas 1–21</th>
+                  <th>% Mes</th>
+                  <th>Aporte Semanal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #FFFDF5;">
+                  <td><strong>Alojamiento Privadas</strong></td>
+                  <td>$9.438.531</td>
+                  <td>60,8%</td>
+                  <td>$30.842.780</td>
+                  <td>60,9%</td>
+                  <td>30,6%</td>
+                </tr>
+                <tr>
+                  <td><strong>Alojamiento Dorms</strong></td>
+                  <td>$2.895.033</td>
+                  <td>18,7%</td>
+                  <td>$11.646.566</td>
+                  <td>23,0%</td>
+                  <td>24,9%</td>
+                </tr>
+                <tr style="background: #E8F5E9; font-weight: bold;">
+                  <td>Bar</td>
+                  <td>$2.710.000</td>
+                  <td>17,5%</td>
+                  <td>$6.886.000</td>
+                  <td>13,6%</td>
+                  <td><span class="badge badge-success">39,4% 🔥</span></td>
+                </tr>
+                <tr>
+                  <td>Extras</td>
+                  <td>$475.219</td>
+                  <td>3,1%</td>
+                  <td>$1.305.673</td>
+                  <td>2,6%</td>
+                  <td>36,4%</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>TOTAL</td>
+                  <td>$15.518.783</td>
+                  <td>100%</td>
+                  <td>$50.681.019</td>
+                  <td>100%</td>
+                  <td>30,6%</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Ingresos Recibidos y Medios de Pago Auditados</span>
+            <span class="badge badge-neutral">Recaudación Real en Caja</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Forma de Pago</th>
+                  <th>Recibido 14–20</th>
+                  <th>% Sem</th>
+                  <th>Recibido 1–21</th>
+                  <th>% Mes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #E8F5E9;">
+                  <td><strong>Tarjeta de Crédito</strong></td>
+                  <td>$6.873.439</td>
+                  <td>71,3%</td>
+                  <td>$24.250.955</td>
+                  <td>57,9%</td>
+                </tr>
+                <tr>
+                  <td><strong>Efectivo</strong></td>
+                  <td>$1.971.571</td>
+                  <td>20,4%</td>
+                  <td>$4.361.694</td>
+                  <td>10,4%</td>
+                </tr>
+                <tr>
+                  <td><strong>Tarjeta Débito</strong></td>
+                  <td>$770.000</td>
+                  <td>8,0%</td>
+                  <td>$11.924.100</td>
+                  <td>28,4%</td>
+                </tr>
+                <tr>
+                  <td><strong>Bold</strong></td>
+                  <td>$30.000</td>
+                  <td>0,3%</td>
+                  <td>$376.000</td>
+                  <td>0,9%</td>
+                </tr>
+                <tr>
+                  <td><strong>Depósito Bancario</strong></td>
+                  <td>$0</td>
+                  <td>0,0%</td>
+                  <td>$1.000.000</td>
+                  <td>2,4%</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>TOTAL COBRADO</td>
+                  <td>$9.645.010</td>
+                  <td>100%</td>
+                  <td>$41.912.749</td>
+                  <td>100%</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUE 5: CHECK-OUTS Y HOUSEKEEPING -->
+    <section id="checkouts">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">05</span> Análisis de Check-outs e Impacto en Housekeeping</div>
+        <span class="section-tag">54 Reservas / 88 Huéspedes / 146 Noches Finalizadas</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Check-outs por Día: Habitaciones Privadas vs Dormitorios</span>
+            <span class="badge badge-info">Viernes Privadas / Domingo Dorms</span>
+          </div>
+          <div style="height: 270px;">
+            <canvas id="chartCheckoutsDia"></canvas>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Matriz Operativa de Salidas</span>
+            <span class="badge badge-neutral">Estancia Media: 2,70 noches</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Día</th>
+                  <th>Check-outs</th>
+                  <th>Huéspedes</th>
+                  <th>Noches Tot.</th>
+                  <th>Privadas</th>
+                  <th>Dorms</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Lun 14</td><td>7</td><td>12</td><td>25</td><td>4</td><td>3</td></tr>
+                <tr style="background: #FFFDF5;"><td>Mar 15</td><td>11</td><td>17</td><td>41</td><td>4</td><td>7</td></tr>
+                <tr><td>Mié 16</td><td>4</td><td>8</td><td>11</td><td>3</td><td>1</td></tr>
+                <tr><td>Jue 17</td><td>5</td><td>7</td><td>11</td><td>2</td><td>3</td></tr>
+                <tr style="background: #FFF3E0;"><td><strong>Vie 18</strong></td><td>10</td><td><strong>19</strong></td><td>29</td><td><strong>8</strong></td><td>2</td></tr>
+                <tr><td>Sáb 19</td><td>4</td><td>10</td><td>7</td><td>4</td><td>0</td></tr>
+                <tr style="background: #E3F2FD;"><td><strong>Dom 20</strong></td><td><strong>13</strong></td><td>15</td><td>22</td><td>2</td><td><strong>11</strong></td></tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>TOTAL</td>
+                  <td>54</td>
+                  <td>88</td>
+                  <td>146</td>
+                  <td>27 (61 pax)</td>
+                  <td>27 (27 pax)</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUE 6: CHECK-INS REALIZADOS (FINANZAS Y COMPARATIVA) -->
+    <section id="checkins">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">06</span> Análisis Financiero de Check-ins Efectivos</div>
+        <span class="section-tag">Ingresos Asociados · 53 Check-ins / 82 Huéspedes</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Venta Bruta vs Ingreso Neto por Canal en Check-ins</span>
+            <span class="badge badge-success">Booking Genera el 52% del Neto</span>
+          </div>
+          <div style="height: 260px;">
+            <canvas id="chartFinanzasCheckinCanal"></canvas>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Rendimiento por Canal de Check-in</span>
+            <span class="badge badge-neutral">Comisiones: HW 26% / Booking 18%</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Canal</th>
+                  <th>Check-ins</th>
+                  <th>Venta Bruta</th>
+                  <th>Comisión</th>
+                  <th>Ingreso Neto</th>
+                  <th>Ticket Bruto</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #E8F5E9;">
+                  <td><strong>Booking.com</strong></td>
+                  <td>17 (32,1%)</td>
+                  <td>$5.556.117</td>
+                  <td>$1.000.101</td>
+                  <td><strong>$4.556.016</strong> (52%)</td>
+                  <td><strong>$326.830</strong></td>
+                </tr>
+                <tr style="background: #FFEBEE;">
+                  <td><strong>Hostelworld</strong></td>
+                  <td>27 (50,9%)</td>
+                  <td>$3.537.395</td>
+                  <td>$919.723</td>
+                  <td><strong>$2.617.672</strong> (30%)</td>
+                  <td><strong>$131.015</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Directo / Recepción</strong></td>
+                  <td>9 (17,0%)</td>
+                  <td>$1.592.756</td>
+                  <td>$0</td>
+                  <td><strong>$1.592.756</strong> (18%)</td>
+                  <td><strong>$176.973</strong></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>TOTAL</td>
+                  <td>53</td>
+                  <td>$10.686.268</td>
+                  <td>$1.919.824</td>
+                  <td>$8.766.444</td>
+                  <td>$201.628</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUE 7: RESERVAS CREADAS (VENTA EN LIBROS) -->
+    <section id="reservas">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">07</span> Reservas Creadas en la Semana (Normalización & Canales)</div>
+        <span class="section-tag">Recepción vs Santiago Posada Desglosados</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Distribución de Venta Bruta vs Ingreso Neto por Canal</span>
+            <span class="badge badge-neutral">Venta Creada: $9.772.035</span>
+          </div>
+          <div style="height: 270px;">
+            <canvas id="chartFinanzasCanal"></canvas>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Resumen Financiero por Canal (Reservas Creadas 14–20 Sep)</span>
+            <span class="badge badge-info">52 Reservas / 69 Pax / 119 Noches</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Canal Auditado</th>
+                  <th>Reservas (%)</th>
+                  <th>Pax</th>
+                  <th>Noches</th>
+                  <th>Venta Bruta</th>
+                  <th>Comisión</th>
+                  <th>Neto Casa Kiwi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Hostelworld</strong> (26%)</td>
+                  <td>26 (50,0%)</td>
+                  <td>36</td>
+                  <td>57</td>
+                  <td>$4.617.839</td>
+                  <td>$1.200.638</td>
+                  <td><strong>$3.417.201</strong> (42,5%)</td>
+                </tr>
+                <tr>
+                  <td><strong>Booking.com</strong> (18%)</td>
+                  <td>12 (23,1%)</td>
+                  <td>18</td>
+                  <td>35</td>
+                  <td>$2.929.190</td>
+                  <td>$527.254</td>
+                  <td><strong>$2.401.936</strong> (29,9%)</td>
+                </tr>
+                <tr style="background: #E8F5E9;">
+                  <td><strong>Recepción</strong> (0%)*</td>
+                  <td>10 (19,2%)</td>
+                  <td>10</td>
+                  <td>21</td>
+                  <td>$1.720.450</td>
+                  <td>$0</td>
+                  <td><strong>$1.720.450</strong> (21,4%)</td>
+                </tr>
+                <tr style="background: #E8F5E9;">
+                  <td><strong>Santiago</strong> (0%)**</td>
+                  <td>4 (7,7%)</td>
+                  <td>5</td>
+                  <td>6</td>
+                  <td>$504.556</td>
+                  <td>$0</td>
+                  <td><strong>$504.556</strong> (6,3%)</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>TOTAL</td>
+                  <td>52 (100%)</td>
+                  <td>69</td>
+                  <td>119</td>
+                  <td>$9.772.035</td>
+                  <td>$1.727.892</td>
+                  <td>$8.044.143</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <div style="font-size: 11px; color: var(--kiwi-gray-dark); margin-top: 6px;">
+            *<strong>Recepción (10):</strong> 8 con canal RECEPCION + 2 creadas por Camila Vega.<br>
+            **<strong>Santiago Posada (4):</strong> 3 con canal SANTIAGO POSADA + 1 creada por Santiago Posada.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUE 8: GESTIÓN COMERCIAL & UPSELLING -->
+    <section id="upselling">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">08</span> Gestión Comercial, Upselling & Conversión Directa</div>
+        <span class="section-tag">Piloto de Prueba (2 Días) · Impacto: $658.950 COP</span>
+      </div>
+
+      <div class="card" style="background: #FFFDF5; border-left: 4px solid var(--kiwi-yellow);">
+        <h4 style="font-size: 13.5px; font-weight: 900; color: var(--kiwi-black); margin-bottom: 6px;">
+          ⚙️ Parámetro Operativo: Periodo de Prueba de 2 Días & Proyección
+        </h4>
+        <p style="font-size: 12px; color: var(--kiwi-gray-dark); margin-bottom: 4px; line-height: 1.5;">
+          • <strong>Alcance de los Resultados:</strong> Esta gestión comercial de <em>upsales</em> y contacto directo <strong>se ejecutó únicamente durante un periodo de prueba de 2 días</strong> dentro de la semana analizada.
+        </p>
+        <p style="font-size: 12px; color: var(--kiwi-gray-dark); margin: 0; line-height: 1.5;">
+          • <strong>Plan de Despliegue en Marcha:</strong> Debido a su alta efectividad inmediata ($658.950 COP generados en solo 48 horas), <strong>esta estrategia se irá implementando a lo largo de toda la semana de forma continua</strong> para medir el impacto acumulado y evaluar su rendimiento consolidado durante el próximo mes.
+        </p>
+      </div>
+
+      <div class="grid-3" style="margin-bottom: 20px;">
+        <div class="kpi-card orange">
+          <div class="kpi-header">
+            <span class="kpi-name">Contactos / Oportunidades</span>
+            <span class="kpi-icon">📲</span>
+          </div>
+          <div class="kpi-value">14 / 12</div>
+          <div class="kpi-subtext">14 registrados · 12 oportunidades activas</div>
+          <span class="kpi-badge neutral">Tasa de respuesta: 50,0% (6 pax)</span>
+        </div>
+
+        <div class="kpi-card green">
+          <div class="kpi-header">
+            <span class="kpi-name">Conversión Comercial</span>
+            <span class="kpi-icon">🎯</span>
+          </div>
+          <div class="kpi-value">33,3%</div>
+          <div class="kpi-subtext">4 resultados comerciales de 12 oportunidades</div>
+          <span class="kpi-badge positive">2 Upsales + 2 Directas derivadas</span>
+        </div>
+
+        <div class="kpi-card yellow">
+          <div class="kpi-header">
+            <span class="kpi-name">Pipeline en Seguimiento</span>
+            <span class="kpi-icon">⏳</span>
+          </div>
+          <div class="kpi-value">$472.615</div>
+          <div class="kpi-subtext">6 huéspedes sin responder actualmente</div>
+          <span class="kpi-badge warning">Upgrades potenciales pendientes</span>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Desglose de Ingresos Comerciales Generados</span>
+            <span class="badge badge-success">Efectividad del Piloto</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Concepto / Huésped</th>
+                  <th>Tipo de Resultado</th>
+                  <th>Valor COP</th>
+                  <th>Impacto Estratégico</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Jennifer</strong></td>
+                  <td><span class="badge badge-success">Upsale</span></td>
+                  <td>$140.000</td>
+                  <td>Upgrade de categoría en habitación</td>
+                </tr>
+                <tr>
+                  <td><strong>Estefania</strong></td>
+                  <td><span class="badge badge-success">Upsale</span></td>
+                  <td>$75.000</td>
+                  <td>Upgrade adicional de estancia</td>
+                </tr>
+                <tr>
+                  <td><strong>Amy</strong></td>
+                  <td><span class="badge badge-info">Reserva Directa</span></td>
+                  <td>$214.200</td>
+                  <td>Derivada de contacto comercial</td>
+                </tr>
+                <tr>
+                  <td><strong>Rebecca</strong></td>
+                  <td><span class="badge badge-info">Reserva Directa</span></td>
+                  <td>$63.700</td>
+                  <td>Derivada de contacto comercial</td>
+                </tr>
+                <tr style="background: #FAFAFA; font-weight: bold;">
+                  <td colspan="2">Subtotal Generado por Contactos</td>
+                  <td colspan="2">$492.900 COP</td>
+                </tr>
+                <tr>
+                  <td><strong>Celia</strong></td>
+                  <td><span class="badge badge-warning">Directa Adicional</span></td>
+                  <td>$166.050</td>
+                  <td>Captura directa sin intermediarios</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="2">IMPACTO COMERCIAL TOTAL</td>
+                  <td colspan="2"><strong>$658.950 COP</strong></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Embudo de Conversión Comercial (Funnel)</span>
+            <span class="badge badge-neutral">Piloto de 2 Días → $658k</span>
+          </div>
+          <div style="height: 250px;">
+            <canvas id="chartFunnelUpsell"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUE 9: POTENCIAL RETAIL EN RECEPCIÓN (CONVENIENCE STORE) -->
+    <section id="tienda-recepcion">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">09</span> Potencial de Venta de Productos en Recepción (Retail Convenience)</div>
+        <span class="section-tag">Iniciativa de Implementación Urgente</span>
+      </div>
+
+      <div class="card" style="background: #FFFDF9; border-left: 4px solid var(--alert-red);">
+        <h4 style="font-size: 13.5px; font-weight: 900; color: var(--kiwi-black); margin-bottom: 6px;">
+          🚀 Justificación Estratégica: Inyección Urgente de Liquidez y Flujo de Dinero
+        </h4>
+        <p style="font-size: 12.5px; color: var(--kiwi-dark); margin-bottom: 6px; line-height: 1.5;">
+          Esta propuesta es una <strong>idea comercial de implementación urgente</strong> para potenciar los ingresos y agregar flujo de dinero constante al hostal mediante ganancias inmediatas de alto margen, concebida desde tres puntos de vista estratégicos:
+        </p>
+        <div class="grid-3" style="font-size: 11.5px; color: var(--kiwi-gray-dark); gap: 14px; margin-top: 8px;">
+          <div style="background: #FFFFFF; padding: 10px; border-radius: 6px; border: 1px solid #EEE;">
+            <strong style="color: var(--kiwi-orange);">1. Desde el Front Desk / Recepción:</strong>
+            <p style="margin-top: 2px;">Convierte el mostrador de un centro de costos operativos en una unidad generadora de caja diaria con compras de impulso (dulces, snacks, papas) al hacer check-in, pedir llaves o redondear vueltos.</p>
+          </div>
+          <div style="background: #FFFFFF; padding: 10px; border-radius: 6px; border: 1px solid #EEE;">
+            <strong style="color: var(--kiwi-yellow); color: #B78103;">2. Desde el Bar y Vida Social:</strong>
+            <p style="margin-top: 2px;">Complementa la oferta de bebidas alcohólicas y coctelería con productos salados y cigarrillos que el huésped busca durante la noche, capturando el gasto que hoy se fuga a tiendas o minimercados externos (OXXO/Éxito).</p>
+          </div>
+          <div style="background: #FFFFFF; padding: 10px; border-radius: 6px; border: 1px solid #EEE;">
+            <strong style="color: var(--alert-green);">3. Desde la Experiencia del Huésped:</strong>
+            <p style="margin-top: 2px;">Brinda conveniencia inmediata 24/7 para llegadas tardías de madrugada o salidas tempranas a tours (Guatapé/Comuna 13), mejorando la percepción de servicio sin salir de las instalaciones.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-3" style="margin-bottom: 20px;">
+        <div class="kpi-card orange">
+          <div class="kpi-header">
+            <span class="kpi-name">Escenario Conservador</span>
+            <span class="kpi-icon">🔴</span>
+          </div>
+          <div class="kpi-value">$65.000 / sem</div>
+          <div class="kpi-subtext">10% conversión (13 compras · Ticket $5k)</div>
+          <span class="kpi-badge neutral">Utilidad est: $29.250/sem</span>
+        </div>
+
+        <div class="kpi-card green">
+          <div class="kpi-header">
+            <span class="kpi-name">Escenario Base (Medio)</span>
+            <span class="kpi-icon">🟡</span>
+          </div>
+          <div class="kpi-value">$256.000 / sem</div>
+          <div class="kpi-subtext">25% conversión (32 compras · Ticket $8k)</div>
+          <span class="kpi-badge positive">Utilidad est: $115.200/sem (~$460k/mes)</span>
+        </div>
+
+        <div class="kpi-card yellow">
+          <div class="kpi-header">
+            <span class="kpi-name">Escenario Optimista</span>
+            <span class="kpi-icon">🟢</span>
+          </div>
+          <div class="kpi-value">$624.000 / sem</div>
+          <div class="kpi-subtext">40% conversión (52 compras · Ticket $12k)</div>
+          <span class="kpi-badge positive">Utilidad est: $280.800/sem (~$1,12M/mes)</span>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Proyección Semanal y Mensual de Ventas vs Utilidad Bruta</span>
+            <span class="badge badge-success">Margen Bruto Ponderado: ~45%</span>
+          </div>
+          <div style="height: 270px;">
+            <canvas id="chartEscenariosRetail"></canvas>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Propuesta de Inventario Inicial Magro (Bajo Capital)</span>
+            <span class="badge badge-neutral">Inversión: $464.524 COP (176 unidades)</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Categoría</th>
+                  <th>Producto Seleccionado</th>
+                  <th>Stock Inicial</th>
+                  <th>Costo Unit.</th>
+                  <th>Venta Sug.</th>
+                  <th>Subtotal Costo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Snacks Salados</strong></td>
+                  <td>Pringles Grande (124g)</td>
+                  <td>6 uds</td>
+                  <td>$7.500</td>
+                  <td>$17.000</td>
+                  <td>$45.000</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Pringles Pequeña (40g)</td>
+                  <td>12 uds</td>
+                  <td>$3.500</td>
+                  <td>$7.000</td>
+                  <td>$42.000</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Papitas Margarita Pequeñas</td>
+                  <td>24 uds</td>
+                  <td>$900</td>
+                  <td>$3.000</td>
+                  <td>$21.600</td>
+                </tr>
+                <tr style="background: #FFFDF5;">
+                  <td><strong>Dulces / Impulso</strong></td>
+                  <td>Chocolatina Jet Mini</td>
+                  <td>48 uds (2 disp)</td>
+                  <td>$838</td>
+                  <td>$1.500</td>
+                  <td>$40.224</td>
+                </tr>
+                <tr style="background: #FFFDF5;">
+                  <td></td>
+                  <td>Chocoramo Mini / Normal</td>
+                  <td>30 uds (20+10)</td>
+                  <td>~$1.260</td>
+                  <td>$1.500–$4k</td>
+                  <td>$37.800</td>
+                </tr>
+                <tr style="background: #FFFDF5;">
+                  <td></td>
+                  <td>Trululu / Nucita / Bon Bon</td>
+                  <td>60 uds (12+24+24)</td>
+                  <td>~$1.390</td>
+                  <td>$1.000–$7k</td>
+                  <td>$83.400</td>
+                </tr>
+                <tr>
+                  <td><strong>Cigarrillos</strong></td>
+                  <td>Marlboro (Cajetilla)</td>
+                  <td>10 uds (1 cartón)</td>
+                  <td>$9.850</td>
+                  <td>$15.500</td>
+                  <td>$98.500</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Lucky Strike (Cajetilla)</td>
+                  <td>10 uds (1 cartón)</td>
+                  <td>$11.400</td>
+                  <td>$16.500</td>
+                  <td>$114.000</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="5">TOTAL INVERSIÓN INICIAL EN STOCK</td>
+                  <td><strong>$464.524 COP</strong></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUE 10: COMPARATIVAS MACROECONÓMICAS -->
+    <section id="comparativas">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">10</span> Comparativas Macroeconómicas: Anual e Histórica</div>
+        <span class="section-tag">Septiembre vs Años Anteriores</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Ocupación Días 1 al 20: 2026 Récord de 4 Años</span>
+            <span class="badge badge-success">38,30% vs 29,10% Promedio Histórico</span>
+          </div>
+          <div style="height: 250px;">
+            <canvas id="chartHistorico"></canvas>
+          </div>
+          <div class="table-responsive" style="margin-top: 8px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Año</th>
+                  <th>Vendidas 1–20</th>
+                  <th>Ocupación 1–20</th>
+                  <th>Cierre Mes Completo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>2023</td><td>321</td><td>32,10%</td><td>445 uds (29,67%)</td></tr>
+                <tr><td>2024</td><td>265</td><td>26,50%</td><td>417 uds (27,80%)</td></tr>
+                <tr><td>2025</td><td>287</td><td>28,70%</td><td>385 uds (25,67%)</td></tr>
+                <tr style="background: #E8F5E9; font-weight: bold;">
+                  <td>2026</td>
+                  <td>383</td>
+                  <td>38,30% 🏆</td>
+                  <td>428 uds en libros (al 21)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Ocupación Mensual 2026 vs Promedio Ene–Ago</span>
+            <span class="badge badge-neutral">Promedio Anual: 44,14%</span>
+          </div>
+          <div style="height: 250px;">
+            <canvas id="chartMensual"></canvas>
+          </div>
+          <div style="font-size: 11px; color: var(--kiwi-gray-dark); margin-top: 8px;">
+            • Aunque septiembre completo marca 28,53% por inventario futuro no consumido, en días transcurridos (38,30%) la brecha con el año es de solo 5,8 pp.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUE 11: ANÁLISIS DEMOGRÁFICO Y GEOGRÁFICO (SEMANA, MES Y AÑO) -->
+    <section id="demografia">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">11</span> Análisis Demográfico y Geográfico: Semana 14–20 vs. Mes vs. Año 2026</div>
+        <span class="section-tag">Origen Geográfico Consolidado</span>
+      </div>
+
+      <!-- Cuadro comparativo Año vs Mes -->
+      <div class="card" style="background: #FFFDF9; border-left: 4px solid var(--kiwi-orange);">
+        <h4 style="font-size: 13.5px; font-weight: 800; color: var(--kiwi-black); margin-bottom: 6px;">
+          🌍 Comparativa Macro: Comportamiento Anual vs. Mes de Septiembre
+        </h4>
+        <div class="grid-3" style="font-size: 11.5px; color: var(--kiwi-gray-dark); gap: 16px;">
+          <div>
+            <strong style="color: var(--kiwi-black);">Líder Anual vs. Líder Mensual:</strong>
+            <p style="margin-top: 3px;">
+              En el consolidado anual 2026 (2.106 check-ins), <strong>Francia es el mercado N° 1 indiscutible con 15,8%</strong> (332 reservas). Sin embargo, en septiembre <strong>Alemania toma el liderazgo absoluto con 14,6% en llegadas (25) y 17,0% en reservas creadas (30)</strong>.
+            </p>
+          </div>
+          <div>
+            <strong style="color: var(--kiwi-black);">Fuerte Repunte de Colombia en Septiembre:</strong>
+            <p style="margin-top: 3px;">
+              El turismo doméstico crece notablemente en septiembre: pasa de un promedio anual de <strong>9,1% (191 reservas)</strong> a representar el <strong>13,5% de las llegadas del mes (23 check-ins)</strong>, posicionándose como el segundo país de mayor peso en septiembre.
+            </p>
+          </div>
+          <div>
+            <strong style="color: var(--kiwi-black);">Mercados Anglosajones y de Larga Distancia:</strong>
+            <p style="margin-top: 3px;">
+              Australia muestra un crecimiento relevante en septiembre alcanzando el <strong>8,2% de las llegadas (14)</strong> frente a su 3,7% anual. Reino Unido (7,6%) y Estados Unidos (6,4%) completan el grupo de tracción estable internacional.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gráficos Macro: Año vs Mes -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Top 5 Países en el Año 2026 (Check-ins: 2.106 reservas)</span>
+            <span class="badge badge-neutral">Concentran casi el 60% del Total</span>
+          </div>
+          <div style="height: 260px;">
+            <canvas id="chartPaisesAnual"></canvas>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Top 5 Países en Septiembre 2026 (1–21 Sep: 171 check-ins)</span>
+            <span class="badge badge-success">Alemania y Colombia al Frente</span>
+          </div>
+          <div style="height: 260px;">
+            <canvas id="chartPaisesMes"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tablas Comparativas Macro (Año y Mes) -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Consolidado Anual 2026 (1 Ene – 21 Sep)</span>
+            <span class="badge badge-info">2.106 Check-ins / 2.087 Creadas</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>País</th>
+                  <th>Check-ins (%)</th>
+                  <th>Reservas Creadas (%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #FFFDF5; font-weight: bold;"><td>Francia</td><td>332 (15,8%)</td><td>15,8%</td></tr>
+                <tr><td>Alemania</td><td>263 (12,5%)</td><td>13,1%</td></tr>
+                <tr><td>Reino Unido</td><td>229 (10,9%)</td><td>10,9%</td></tr>
+                <tr><td>Estados Unidos</td><td>210 (10,0%)</td><td>10,1%</td></tr>
+                <tr><td>Colombia</td><td>191 (9,1%)</td><td>7,6%</td></tr>
+                <tr><td>Países Bajos</td><td>86 (4,1%)</td><td>—</td></tr>
+                <tr><td>Australia</td><td>78 (3,7%)</td><td>—</td></tr>
+                <tr><td>México</td><td>74 (3,5%)</td><td>—</td></tr>
+                <tr><td>Canadá</td><td>65 (3,1%)</td><td>—</td></tr>
+                <tr><td>Suiza</td><td>62 (2,9%)</td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Consolidado Mes de Septiembre (1–21 Sep 2026)</span>
+            <span class="badge badge-success">171 Check-ins / 176 Creadas</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>País</th>
+                  <th>Check-ins (%)</th>
+                  <th>Reservas Creadas (%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #E8F5E9; font-weight: bold;"><td>Alemania</td><td>25 (14,6%)</td><td>30 (17,0%)</td></tr>
+                <tr style="background: #FFFDF5;"><td>Colombia</td><td>23 (13,5%)</td><td>18 (10,2%)</td></tr>
+                <tr><td>Francia</td><td>20 (11,7%)</td><td>21 (11,9%)</td></tr>
+                <tr><td>Australia</td><td>14 (8,2%)</td><td>14 (8,0%)</td></tr>
+                <tr><td>Reino Unido</td><td>13 (7,6%)</td><td>12 (6,8%)</td></tr>
+                <tr><td>México</td><td>12 (7,0%)</td><td>10 (5,7%)</td></tr>
+                <tr><td>Estados Unidos</td><td>11 (6,4%)</td><td>8 (4,5%)</td></tr>
+                <tr><td>Suiza</td><td>8 (4,7%)</td><td>9 (5,1%)</td></tr>
+                <tr><td>España</td><td>8 (4,7%)</td><td>9 (5,1%)</td></tr>
+                <tr><td>Israel</td><td>6 (3,5%)</td><td>6 (3,4%)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- DETALLE SEMANAL: 14 AL 20 DE SEPTIEMBRE -->
+      <div class="card" style="margin-top: 20px;">
+        <div class="card-title">
+          <span>Detalle Específico: Semana del 14 al 20 de Septiembre</span>
+          <span class="badge badge-warning">52 Creadas en la Semana vs 53 Check-ins en la Semana</span>
+        </div>
+        <p style="font-size: 11.5px; color: var(--kiwi-gray-dark); margin-bottom: 12px;">
+          Comparación directa entre las reservas cuya fecha de creación ocurrió del 14 al 20 de septiembre frente a los huéspedes cuya llegada efectiva (check-in) se dio en esos mismos 7 días:
+        </p>
+
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Región Geográfica</th>
+                <th>Creadas (14–20 Sep)</th>
+                <th>% Creadas</th>
+                <th>Check-ins (14–20 Sep)</th>
+                <th>% Check-ins</th>
+                <th>Variación (pp)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background: #FFFDF5;">
+                <td><strong>Europa</strong> (Alemania, Suiza, UK, Francia, etc.)</td>
+                <td>23</td>
+                <td>44,2%</td>
+                <td>27</td>
+                <td>50,9%</td>
+                <td><span class="badge badge-success">+6,7 pp</span></td>
+              </tr>
+              <tr>
+                <td><strong>Norteamérica</strong> (EE. UU., México, Canadá)</td>
+                <td>9</td>
+                <td>17,3%</td>
+                <td>10</td>
+                <td>18,9%</td>
+                <td><span class="badge badge-success">+1,6 pp</span></td>
+              </tr>
+              <tr>
+                <td><strong>Oceanía</strong> (Australia, Nueva Zelanda)</td>
+                <td>6</td>
+                <td>11,5%</td>
+                <td>7</td>
+                <td>13,2%</td>
+                <td><span class="badge badge-success">+1,7 pp</span></td>
+              </tr>
+              <tr>
+                <td><strong>Asia y Medio Oriente</strong> (Israel, Corea, Singapur, etc.)</td>
+                <td>5</td>
+                <td>9,6%</td>
+                <td>6</td>
+                <td>11,3%</td>
+                <td><span class="badge badge-success">+1,7 pp</span></td>
+              </tr>
+              <tr style="background: #FFEBEE;">
+                <td><strong>Latinoamérica</strong> (Colombia, Brasil)</td>
+                <td>8</td>
+                <td>15,4%</td>
+                <td>3</td>
+                <td>5,7%</td>
+                <td><span class="badge badge-danger">-9,7 pp</span></td>
+              </tr>
+              <tr>
+                <td><strong>No especificado</strong></td>
+                <td>1</td>
+                <td>1,9%</td>
+                <td>0</td>
+                <td>0,0%</td>
+                <td>-1,9 pp</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>TOTAL SEMANA</td>
+                <td>52</td>
+                <td>100,0%</td>
+                <td>53</td>
+                <td>100,0%</td>
+                <td>—</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Países: Reservas Creadas (14–20 Sep)</span>
+            <span class="badge badge-neutral">52 Reservas Totales</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead><tr><th>País</th><th>N° Reservas</th><th>%</th></tr></thead>
+              <tbody>
+                <tr style="background: #E8F5E9; font-weight: bold;"><td>Colombia</td><td>7</td><td>13,5%</td></tr>
+                <tr style="background: #FFFDF5;"><td>Alemania</td><td>6</td><td>11,5%</td></tr>
+                <tr><td>México</td><td>4</td><td>7,7%</td></tr>
+                <tr><td>Reino Unido</td><td>4</td><td>7,7%</td></tr>
+                <tr><td>Estados Unidos</td><td>4</td><td>7,7%</td></tr>
+                <tr><td>Suiza</td><td>3</td><td>5,8%</td></tr>
+                <tr><td>Australia</td><td>3</td><td>5,8%</td></tr>
+                <tr><td>Nueva Zelanda</td><td>3</td><td>5,8%</td></tr>
+                <tr><td>Israel</td><td>3</td><td>5,8%</td></tr>
+                <tr><td>Francia</td><td>2</td><td>3,8%</td></tr>
+                <tr><td>España</td><td>2</td><td>3,8%</td></tr>
+                <tr><td>Países Bajos</td><td>2</td><td>3,8%</td></tr>
+                <tr><td>Austria</td><td>2</td><td>3,8%</td></tr>
+                <tr><td>Otros (7 países de a 1 res.)</td><td>7</td><td>13,5%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Países: Check-ins Efectivos (14–20 Sep)</span>
+            <span class="badge badge-success">53 Check-ins Totales</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead><tr><th>País</th><th>N° Check-ins</th><th>%</th></tr></thead>
+              <tbody>
+                <tr style="background: #E8F5E9; font-weight: bold;"><td>Alemania</td><td>7</td><td>13,2%</td></tr>
+                <tr style="background: #FFFDF5;"><td>Suiza</td><td>5</td><td>9,4%</td></tr>
+                <tr style="background: #FFFDF5;"><td>Estados Unidos</td><td>5</td><td>9,4%</td></tr>
+                <tr><td>Australia</td><td>4</td><td>7,5%</td></tr>
+                <tr><td>Reino Unido</td><td>4</td><td>7,5%</td></tr>
+                <tr><td>México</td><td>4</td><td>7,5%</td></tr>
+                <tr><td>Israel</td><td>3</td><td>5,7%</td></tr>
+                <tr><td>Francia</td><td>3</td><td>5,7%</td></tr>
+                <tr style="background: #FFF3E0;"><td>Colombia</td><td>3</td><td>5,7%</td></tr>
+                <tr><td>Nueva Zelanda</td><td>3</td><td>5,7%</td></tr>
+                <tr><td>Países Bajos</td><td>2</td><td>3,8%</td></tr>
+                <tr><td>Austria</td><td>2</td><td>3,8%</td></tr>
+                <tr><td>Otros (8 países de a 1 check-in)</td><td>8</td><td>15,1%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUE 12: CONCLUSIONES Y SEMÁFORO DE GESTIÓN -->
+    <section id="revenue">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">12</span> Conclusiones Ejecutivas y Semáforo de Gestión</div>
+        <span class="section-tag">Directrices de Revenue, Operaciones, Ventas & Retail</span>
+      </div>
+
+      <div class="traffic-grid">
+        <div class="traffic-col green">
+          <div class="traffic-head" style="color: var(--alert-green);">🟢 FORTALEZAS</div>
+          <ul class="traffic-list">
+            <li class="traffic-item"><strong>Desempeño Bar:</strong> Generó $2,71M (39,4% de todo el mes) y cobró $3,95M en caja (49% del mes).</li>
+            <li class="traffic-item"><strong>Crecimiento Directo:</strong> Recepción y Santiago duplicaron reservas (7 a 14) y alcanzaron el 26,9% del total.</li>
+            <li class="traffic-item"><strong>Liderazgo de Alemania:</strong> Pasa al frente en septiembre tanto en mes completo (14,6%) como en la semana (13,2%).</li>
+            <li class="traffic-item"><strong>Potencial Retail Validado:</strong> Capacidad de sumar ~$1M/mes en recepción con 45% de margen bruto.</li>
+          </ul>
+        </div>
+
+        <div class="traffic-col yellow">
+          <div class="traffic-head" style="color: #B78103;">🟠 ATENCIÓN</div>
+          <ul class="traffic-list">
+            <li class="traffic-item"><strong>Ventas de Dormitorios:</strong> Desempeño débil con solo $2,89M (18,7% de la semana y 24,9% del mes).</li>
+            <li class="traffic-item"><strong>Dinámica Colombia:</strong> Fuerte en reservas creadas (13,5% semana, 10,2% mes) pero con mayor tasa de viaje futuro.</li>
+            <li class="traffic-item"><strong>Concentración de Pagos:</strong> 71,3% de ingresos dependió de tarjeta de crédito (mayor comisión bancaria).</li>
+            <li class="traffic-item"><strong>Sobrecarga Operativa:</strong> +15,5% de huéspedes ingresados y +12,8% saliendo dejaron $1,65M menos neto.</li>
+          </ul>
+        </div>
+
+        <div class="traffic-col red">
+          <div class="traffic-head" style="color: var(--alert-red);">🔴 RIESGOS</div>
+          <ul class="traffic-list">
+            <li class="traffic-item"><strong>Pérdida de Margen en Fin de Semana:</strong> Fin de semana tuvo 43% más check-ins pero 30% menos venta bruta.</li>
+            <li class="traffic-item"><strong>Dependencia Last-Minute:</strong> 82,7% de reservas y 54,7% de check-ins ocurrieron en ≤ 3 días.</li>
+            <li class="traffic-item"><strong>Libros Vacíos al Cierre:</strong> Solo 6,67% vendido del 22 al 30 de septiembre.</li>
+          </ul>
+        </div>
+
+        <div class="traffic-col orange">
+          <div class="traffic-head" style="color: var(--kiwi-orange);">🔵 ACCIONES REVENUE</div>
+          <ul class="traffic-list">
+            <li class="traffic-item"><strong>Lanzar Stock Retail:</strong> Invertir $464k en stock magro de snacks/tabaco para captar margen de mostrador.</li>
+            <li class="traffic-item"><strong>Marketing Focalizado:</strong> Campañas en inglés/alemán para consolidar el flujo emisor de Alemania, Suiza y UK.</li>
+            <li class="traffic-item"><strong>Puntalar Tarifas en Dorms:</strong> Revisar pricing en camas compartidas para elevar el ticket promedio semanal.</li>
+            <li class="traffic-item"><strong>Incentivar Venta Directa:</strong> Mantener la captación por recepción y Santiago para blindar el margen neto.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--kiwi-card-border); font-size: 11.5px; color: var(--kiwi-gray-medium);">
+      <p><strong>CASA KIWI HOSTEL MEDELLÍN</strong> · REPORTE CASA KIWI HOSTAL 14 - 20 DE SEPTIEMBRE</p>
+      <p style="font-size: 10.5px; margin-top: 4px;">Datos consolidados al 21 de Septiembre de 2026. Documento confidencial para Dirección General y Socios.</p>
+    </footer>
+
+  </div>
+
+  <!-- Scripts Chart.js -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+      // 1. Ocupación Diaria
+      new Chart(document.getElementById('chartSemana').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['Lun 14', 'Mar 15', 'Mié 16', 'Jue 17', 'Vie 18', 'Sáb 19', 'Dom 20'],
+          datasets: [
+            {
+              type: 'line',
+              label: 'Promedio Semanal (36,86%)',
+              data: [36.86, 36.86, 36.86, 36.86, 36.86, 36.86, 36.86],
+              borderColor: '#E64A19',
+              borderWidth: 2,
+              borderDash: [5, 4],
+              pointRadius: 0,
+              fill: false
+            },
+            {
+              type: 'bar',
+              label: 'Ocupación %',
+              data: [32, 30, 30, 32, 30, 60, 44],
+              backgroundColor: [
+                'rgba(230, 74, 25, 0.7)',
+                'rgba(211, 47, 47, 0.7)',
+                'rgba(211, 47, 47, 0.7)',
+                'rgba(230, 74, 25, 0.7)',
+                'rgba(211, 47, 47, 0.7)',
+                'rgba(251, 192, 45, 0.9)',
+                'rgba(230, 74, 25, 0.8)'
+              ],
+              borderColor: ['#E64A19', '#D32F2F', '#D32F2F', '#E64A19', '#D32F2F', '#FBC02D', '#E64A19'],
+              borderWidth: 1.5,
+              borderRadius: 6
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { beginAtZero: true, max: 70, ticks: { callback: v => v + '%' } } }
+        }
+      });
+
+      // 2. Flujo Neto de Reservas (Check-in vs Check-out)
+      new Chart(document.getElementById('chartFlujoNeto').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['Lun 14', 'Mar 15', 'Mié 16', 'Jue 17', 'Vie 18', 'Sáb 19', 'Dom 20'],
+          datasets: [
+            {
+              label: 'Check-ins (Entradas)',
+              data: [0, 10, 4, 6, 9, 19, 5],
+              backgroundColor: 'rgba(46, 125, 50, 0.75)',
+              borderRadius: 4
+            },
+            {
+              label: 'Check-outs (Salidas)',
+              data: [7, 11, 4, 5, 10, 4, 13],
+              backgroundColor: 'rgba(211, 47, 47, 0.75)',
+              borderRadius: 4
+            },
+            {
+              type: 'line',
+              label: 'Flujo Neto',
+              data: [-7, -1, 0, 1, -1, 15, -8],
+              borderColor: '#1A1A1A',
+              backgroundColor: '#1A1A1A',
+              borderWidth: 2,
+              pointRadius: 4,
+              fill: false
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { beginAtZero: true } }
+        }
+      });
+
+      // 3. Ventas por Categoría (14-20 Sep)
+      new Chart(document.getElementById('chartVentasCat').getContext('2d'), {
+        type: 'doughnut',
+        data: {
+          labels: ['Privadas ($9,44M - 60,8%)', 'Bar ($2,71M - 17,5%)', 'Dormitorios ($2,90M - 18,7%)', 'Extras ($475k - 3,1%)'],
+          datasets: [{
+            data: [9438531, 2710000, 2895033, 475219],
+            backgroundColor: ['#E64A19', '#2E7D32', '#FBC02D', '#1565C0'],
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom' } },
+          cutout: '65%'
+        }
+      });
+
+      // 4. Medios de Pago
+      new Chart(document.getElementById('chartMediosPago').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['Tarjeta Crédito (71,3%)', 'Efectivo (20,4%)', 'Tarjeta Débito (8,0%)', 'Bold (0,3%)'],
+          datasets: [{
+            label: 'Ingresos Recibidos (COP)',
+            data: [6873439, 1971571, 770000, 30000],
+            backgroundColor: ['#E64A19', '#2E7D32', '#FBC02D', '#1A1A1A'],
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true, title: { display: true, text: 'COP' } } }
+        }
+      });
+
+      // 5. Check-outs por Día (Privadas vs Dormitorios)
+      new Chart(document.getElementById('chartCheckoutsDia').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['Lun 14', 'Mar 15', 'Mié 16', 'Jue 17', 'Vie 18', 'Sáb 19', 'Dom 20'],
+          datasets: [
+            {
+              label: 'Habitaciones Privadas',
+              data: [4, 4, 3, 2, 8, 4, 2],
+              backgroundColor: '#E64A19',
+              borderRadius: 4
+            },
+            {
+              label: 'Dormitorios Compartidos',
+              data: [3, 7, 1, 3, 2, 0, 11],
+              backgroundColor: '#FBC02D',
+              borderRadius: 4
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { stacked: true },
+            y: { stacked: true, beginAtZero: true }
+          }
+        }
+      });
+
+      // 6. Finanzas por Canal en Check-ins
+      new Chart(document.getElementById('chartFinanzasCheckinCanal').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['Booking.com (18%)', 'Hostelworld (26%)', 'Directo / Manual (0%)'],
+          datasets: [
+            {
+              label: 'Ingreso Neto (COP)',
+              data: [4556016, 2617672, 1592756],
+              backgroundColor: '#2E7D32',
+              borderRadius: 6
+            },
+            {
+              label: 'Comisión OTA (COP)',
+              data: [1000101, 919723, 0],
+              backgroundColor: '#D32F2F',
+              borderRadius: 6
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { stacked: true },
+            y: { stacked: true, beginAtZero: true }
+          }
+        }
+      });
+
+      // 7. Finanzas por Canal en Reservas Creadas
+      new Chart(document.getElementById('chartFinanzasCanal').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['Hostelworld', 'Booking.com', 'Recepción', 'Santiago Posada'],
+          datasets: [
+            {
+              label: 'Ingreso Neto Casa Kiwi',
+              data: [3.42, 2.40, 1.72, 0.50],
+              backgroundColor: '#2E7D32',
+              borderRadius: 6
+            },
+            {
+              label: 'Comisión OTA',
+              data: [1.20, 0.53, 0.0, 0.0],
+              backgroundColor: '#D32F2F',
+              borderRadius: 6
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { stacked: true },
+            y: { stacked: true, title: { display: true, text: 'Millones COP' }, beginAtZero: true }
+          }
+        }
+      });
+
+      // 8. Funnel Comercial / Upselling
+      new Chart(document.getElementById('chartFunnelUpsell').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['Contactos Registrados', 'Oportunidades Activas', 'Respuestas Obtenidas', 'Resultados Comerciales'],
+          datasets: [{
+            label: 'Cantidad',
+            data: [14, 12, 6, 4],
+            backgroundColor: ['#1A1A1A', '#E64A19', '#FBC02D', '#2E7D32'],
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          indexAxis: 'y',
+          plugins: { legend: { display: false } },
+          scales: { x: { beginAtZero: true, max: 16 } }
+        }
+      });
+
+      // 9. Escenarios de Retail en Recepción
+      new Chart(document.getElementById('chartEscenariosRetail').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['Conservador (10%)', 'Base / Medio (25%)', 'Optimista (40%)'],
+          datasets: [
+            {
+              label: 'Venta Semanal Estimada (COP)',
+              data: [65000, 256000, 624000],
+              backgroundColor: ['#757575', '#E64A19', '#FBC02D'],
+              borderRadius: 6
+            },
+            {
+              label: 'Utilidad Bruta Semanal (~45%)',
+              data: [29250, 115200, 280800],
+              backgroundColor: ['#BDBDBD', '#2E7D32', '#829408'],
+              borderRadius: 6
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { beginAtZero: true, title: { display: true, text: 'COP' } } }
+        }
+      });
+
+      // 10. Histórico Septiembre 1–20 (2023-2026)
+      new Chart(document.getElementById('chartHistorico').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['Sep 2023', 'Sep 2024', 'Sep 2025', 'Sep 2026 (Actual)'],
+          datasets: [{
+            label: 'Ocupación 1–20 Sep (%)',
+            data: [32.10, 26.50, 28.70, 38.30],
+            backgroundColor: ['#757575', '#BDBDBD', '#9E9E9E', '#E64A19'],
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { beginAtZero: true, max: 45, ticks: { callback: v => v + '%' } } }
+        }
+      });
+
+      // 11. Mensual 2026
+      new Chart(document.getElementById('chartMensual').getContext('2d'), {
+        type: 'line',
+        data: {
+          labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep*'],
+          datasets: [
+            {
+              label: 'Ocupación Mensual %',
+              data: [49.23, 50.21, 58.97, 35.27, 28.58, 42.27, 37.16, 51.68, 28.53],
+              borderColor: '#E64A19',
+              backgroundColor: 'rgba(230, 74, 25, 0.1)',
+              borderWidth: 3,
+              fill: true,
+              pointBackgroundColor: '#1A1A1A',
+              pointRadius: 4
+            },
+            {
+              label: 'Promedio Ene-Ago (44,14%)',
+              data: [44.14, 44.14, 44.14, 44.14, 44.14, 44.14, 44.14, 44.14, 44.14],
+              borderColor: '#FBC02D',
+              borderWidth: 2,
+              borderDash: [5, 5],
+              pointRadius: 0,
+              fill: false
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { beginAtZero: true, max: 70, ticks: { callback: v => v + '%' } } }
+        }
+      });
+
+      // 12. Top Países Anual 2026 (Check-ins)
+      new Chart(document.getElementById('chartPaisesAnual').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['Francia', 'Alemania', 'Reino Unido', 'EE. UU.', 'Colombia'],
+          datasets: [{
+            label: 'Check-ins en el Año (2.106 total)',
+            data: [332, 263, 229, 210, 191],
+            backgroundColor: ['#1A1A1A', '#E64A19', '#FBC02D', '#757575', '#BDBDBD'],
+            borderRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true } }
+        }
+      });
+
+      // 13. Top Países Mes Septiembre 2026 (Check-ins)
+      new Chart(document.getElementById('chartPaisesMes').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['Alemania', 'Colombia', 'Francia', 'Australia', 'Reino Unido'],
+          datasets: [{
+            label: 'Check-ins en Septiembre (171 total)',
+            data: [25, 23, 20, 14, 13],
+            backgroundColor: ['#E64A19', '#FBC02D', '#1A1A1A', '#2E7D32', '#757575'],
+            borderRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true } }
+        }
+      });
+
+    });
+  </script>
+</body>
+</html>
